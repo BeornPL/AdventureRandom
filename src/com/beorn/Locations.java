@@ -13,28 +13,26 @@ import java.util.Set;
 public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 
-    public static void main(String[] args) {
-        FileWriter localFile = null;
-        try {
-            localFile = new FileWriter("locations.txt");
+    public static void main(String[] args) throws IOException {
+        try(FileWriter localFile = new FileWriter("locations.txt")) {
             for(Location location : locations.values()) {
                 localFile.write(location.getLocationID()+","+location.getDescription()+"\n");
             }
-            localFile.close();
-        } catch (IOException e) {
-            System.out.println("In catch block");
-            e.printStackTrace();
-        } finally {
-            System.out.println("In finally block");
-            try {
-                if(localFile != null) {
-                    System.out.println("Attempting to close localfile");
-                    localFile.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+//        FileWriter localFile = null;
+//        try {
+//            localFile = new FileWriter("locations.txt");
+//            for(Location location : locations.values()) {
+//                localFile.write(location.getLocationID()+","+location.getDescription()+"\n");
+//            }
+//            localFile.close();
+//        } finally {
+//            System.out.println("In finally block");
+//            if (localFile != null) {
+//                System.out.println("Attempting to close localfile");
+//                localFile.close();
+//            }
+//        }
     }
 
     static {
